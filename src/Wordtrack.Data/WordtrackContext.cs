@@ -40,7 +40,7 @@ namespace Wordtrack.Data
                 .IsRequired();
 
             modelBuilder.Entity<Book>()
-                .Property(b => b.PublishedYear)
+                .Property(b => b.YearPublished)
                 .IsRequired();
 
             modelBuilder.Entity<Book>()
@@ -54,7 +54,7 @@ namespace Wordtrack.Data
                         Id = 1,
                         Title = "Apology, The Death of Socrates",
                         Author = "Plato",
-                        PublishedYear = -399,
+                        YearPublished = -399,
                         Pages = 40
                     });
         }

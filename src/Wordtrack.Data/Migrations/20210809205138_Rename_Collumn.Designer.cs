@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wordtrack.Data;
 
 namespace Wordtrack.Data.Migrations
 {
     [DbContext(typeof(WordtrackContext))]
-    partial class WordtrackContextModelSnapshot : ModelSnapshot
+    [Migration("20210809205138_Rename_Collumn")]
+    partial class Rename_Collumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
