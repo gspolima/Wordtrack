@@ -29,17 +29,11 @@ namespace Wordtrack.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetBook")]
-        public async Task<ActionResult<BookDto>> GetBook(int id)
-        {
-            var book = await service.GetBook(id);
-
-            if (book == null)
-                return NotFound();
-
-            var bookDto = mapper.Map<BookDto>(book);
-
-            return Ok(bookDto);
-        }
+        public async Task<ActionResult<BookDto>> GetBook(int id) =>
+            await service.GetBook(id)
+                is Book book
+                    ? Ok(mapper.Map<BookDto>(book))
+                    : NotFound();
 
         [HttpPost]
         public async Task<ActionResult> CreateBook([FromBody] BookForCreationDto bookDto)
