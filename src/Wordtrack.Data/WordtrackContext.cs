@@ -18,7 +18,9 @@ namespace Wordtrack.Data
             base.OnConfiguring(optionsBuilder);
 
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WordtrackData;Trusted_Connection=true");
+                optionsBuilder
+                    .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WordtrackTestData;Trusted_Connection=true")
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
         public DbSet<Book> Books { get; set; }

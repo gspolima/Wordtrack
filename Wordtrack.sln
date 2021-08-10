@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD90E717-9037-4A56-89C7-429776E53487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordtrack.Api", "src\Wordtrack.Api\Wordtrack.Api.csproj", "{1165F816-FD63-4C4C-A648-D3EFCE0900A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordtrack.Api", "src\Wordtrack.Api\Wordtrack.Api.csproj", "{1165F816-FD63-4C4C-A648-D3EFCE0900A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordtrack.Data", "src\Wordtrack.Data\Wordtrack.Data.csproj", "{FA620652-254E-4F31-BB08-3CC21260DB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordtrack.Data", "src\Wordtrack.Data\Wordtrack.Data.csproj", "{FA620652-254E-4F31-BB08-3CC21260DB56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordtrack.Domain", "src\Wordtrack.Domain\Wordtrack.Domain.csproj", "{A946A5DB-FD64-4A0D-809E-EF007346F066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordtrack.Domain", "src\Wordtrack.Domain\Wordtrack.Domain.csproj", "{A946A5DB-FD64-4A0D-809E-EF007346F066}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AB6F9898-4037-46F8-93A4-A795D334F0D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordtrack.Test", "test\Wordtrack.Test\Wordtrack.Test.csproj", "{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1165F816-FD63-4C4C-A648-D3EFCE0900A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -60,10 +61,29 @@ Global
 		{A946A5DB-FD64-4A0D-809E-EF007346F066}.Release|x64.Build.0 = Release|Any CPU
 		{A946A5DB-FD64-4A0D-809E-EF007346F066}.Release|x86.ActiveCfg = Release|Any CPU
 		{A946A5DB-FD64-4A0D-809E-EF007346F066}.Release|x86.Build.0 = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|x64.Build.0 = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1165F816-FD63-4C4C-A648-D3EFCE0900A3} = {FD90E717-9037-4A56-89C7-429776E53487}
 		{FA620652-254E-4F31-BB08-3CC21260DB56} = {FD90E717-9037-4A56-89C7-429776E53487}
 		{A946A5DB-FD64-4A0D-809E-EF007346F066} = {FD90E717-9037-4A56-89C7-429776E53487}
+		{0F0A042B-C9BB-4324-B4A7-D618D97BBCE1} = {AB6F9898-4037-46F8-93A4-A795D334F0D2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F2C1861-9080-4485-9994-2822904F40DC}
 	EndGlobalSection
 EndGlobal
