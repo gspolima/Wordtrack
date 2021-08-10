@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using Wordtrack.Api.Services;
 using Wordtrack.Data;
 using Wordtrack.Data.Repository;
@@ -26,6 +27,8 @@ namespace Wordtrack.Api
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             var connection = Configuration.GetConnectionString("DbConnection");
             services.AddDbContext<WordtrackContext>(
                 options => options
@@ -33,6 +36,7 @@ namespace Wordtrack.Api
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Wordtrack.Api", Version = "v1" });

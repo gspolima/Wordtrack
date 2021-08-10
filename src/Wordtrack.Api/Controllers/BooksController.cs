@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wordtrack.Api.Dtos;
@@ -12,10 +13,12 @@ namespace Wordtrack.Api.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBookService service;
+        private readonly IMapper mapper;
 
-        public BooksController(IBookService service)
+        public BooksController(IBookService service, IMapper mapper)
         {
             this.service = service;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -33,14 +36,7 @@ namespace Wordtrack.Api.Controllers
             if (book == null)
                 return NotFound();
 
-            var bookDto = new BookDto()
-            {
-                Id = book.Id,
-                Title = book.Title,
-                Author = book.Author,
-                YearPublished = book.YearPublished,
-                Pages = book.Pages
-            };
+            var bookDto = mapper.Map<BookDto>(book);
 
             return Ok(bookDto);
         }
@@ -58,13 +54,7 @@ namespace Wordtrack.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var book = new Book()
-            {
-                Title = bookDto.Title,
-                Author = bookDto.Author,
-                YearPublished = bookDto.YearPublished,
-                Pages = bookDto.Pages
-            };
+            var book = mapper.Map<Book>(bookDto);
 
             await service.AddBook(book);
 
