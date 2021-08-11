@@ -14,25 +14,32 @@ namespace Wordtrack.Data.Repository
             this.context = context;
         }
 
-        public async Task<int> SaveNewBook(Book book)
+        public Task<List<Book>> GetBooks()
+        {
+            var books = context.Books.ToListAsync();
+            return books;
+        }
+
+        public async Task<Book> GetBook(int id)
+        {
+            var book = await context.Books
+                .Where(b => b.Id == id)
+                .FirstOrDefaultAsync();
+            return book;
+        }
+
+        public async Task<int> Save(Book book)
         {
             context.Add(book);
             var writtenRows = await context.SaveChangesAsync();
             return writtenRows;
         }
 
-        public Task<List<Book>> GetBooksAsync()
+        public async Task<int> Update(Book book)
         {
-            var books = context.Books.ToListAsync();
-            return books;
-        }
-
-        public async Task<Book> GetBookByIdAsync(int id)
-        {
-            var book = await context.Books
-                .Where(b => b.Id == id)
-                .FirstOrDefaultAsync();
-            return book;
+            context.Entry(book).State = EntityState.Modified;
+            var writtenRows = await context.SaveChangesAsync();
+            return writtenRows;
         }
     }
 }

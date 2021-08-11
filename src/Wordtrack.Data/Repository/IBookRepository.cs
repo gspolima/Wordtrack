@@ -6,8 +6,9 @@ namespace Wordtrack.Data.Repository
 {
     public interface IBookRepository
     {
-        Task<List<Book>> GetBooksAsync();
-        Task<Book> GetBookByIdAsync(int id);
-        Task<int> SaveNewBook(Book book);
+        Task<List<Book>> GetBooks();
+        Task<Book> GetBook(int id);
+        Task<int> Save(Book book);
+        Task<int> Update(Book book);
     }
 }

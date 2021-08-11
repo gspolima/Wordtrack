@@ -9,6 +9,7 @@ namespace Wordtrack.Api.Services
     {
         Task<List<BookDto>> GetAllBooks();
         Task<Book> GetBook(int id);
-        Task<int> AddBook(Book bookToAdd);
+        Task<int> AddBook(Book book);
+        Task<int> EditBook(Book book);
     }
 }

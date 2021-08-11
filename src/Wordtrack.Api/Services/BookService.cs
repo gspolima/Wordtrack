@@ -17,7 +17,7 @@ namespace Wordtrack.Api.Services
 
         public async Task<List<BookDto>> GetAllBooks()
         {
-            var booksFromRepo = await repo.GetBooksAsync();
+            var booksFromRepo = await repo.GetBooks();
             var books = new List<BookDto>();
             foreach (var book in booksFromRepo)
             {
@@ -35,7 +35,7 @@ namespace Wordtrack.Api.Services
         }
         public async Task<Book> GetBook(int id)
         {
-            var book = await repo.GetBookByIdAsync(id);
+            var book = await repo.GetBook(id);
 
             if (book == null)
                 return null;
@@ -45,9 +45,16 @@ namespace Wordtrack.Api.Services
 
         public async Task<int> AddBook(Book book)
         {
-            await repo.SaveNewBook(book);
-            return book.Id;
+            await repo.Save(book);
+            var assignedId = book.Id;
+            return assignedId;
         }
 
+        public async Task<int> EditBook(Book book)
+        {
+            await repo.Update(book);
+            var editedBookId = book.Id;
+            return editedBookId;
+        }
     }
 }
