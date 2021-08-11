@@ -10,6 +10,7 @@ namespace Wordtrack.Api.Profiles
         {
             CreateMap<Book, BookDto>();
             CreateMap<BookForCreationDto, Book>();
+            CreateMap<BookForUpdateDto, Book>().ReverseMap();
         }
     }
 }
