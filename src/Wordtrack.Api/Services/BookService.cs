@@ -56,5 +56,12 @@ namespace Wordtrack.Api.Services
             var editedBookId = book.Id;
             return editedBookId;
         }
+
+        public async Task<bool> RemoveBook(int id)
+        {
+            var book = await repo.GetBook(id);
+            var successful = await repo.Delete(book);
+            return successful == 1;
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace Wordtrack.Api.Services
         Task<Book> GetBook(int id);
         Task<int> AddBook(Book book);
         Task<int> EditBook(Book book);
+
+        Task<bool> RemoveBook(int id);
     }
 }

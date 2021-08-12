@@ -83,12 +83,18 @@ namespace Wordtrack.Api.Controllers
             return NoContent();
         }
 
-        public bool AreTitleAndAuthorEqual(BookForCreationDto dto)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBook(int id)
+        {
+            return await service.RemoveBook(id) ? NoContent() : StatusCode(500);
+        }
+
+        private bool AreTitleAndAuthorEqual(BookForCreationDto dto)
         {
             return dto.Title == dto.Author;
         }
 
-        public bool AreTitleAndAuthorEqual(BookForUpdateDto dto)
+        private bool AreTitleAndAuthorEqual(BookForUpdateDto dto)
         {
             return dto.Title == dto.Author;
         }
