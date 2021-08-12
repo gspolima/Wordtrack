@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Wordtrack.Api.Dtos;
 using Wordtrack.Data.Repository;
 using Wordtrack.Domain;
 
@@ -15,23 +14,10 @@ namespace Wordtrack.Api.Services
             this.repo = bookRepo;
         }
 
-        public async Task<List<BookDto>> GetAllBooks()
+        public async Task<List<Book>> GetAllBooks()
         {
             var booksFromRepo = await repo.GetBooks();
-            var books = new List<BookDto>();
-            foreach (var book in booksFromRepo)
-            {
-                books.Add(new BookDto()
-                {
-                    Id = book.Id,
-                    Title = book.Title,
-                    Author = book.Author,
-                    YearPublished = book.YearPublished,
-                    Pages = book.Pages
-                });
-            }
-
-            return books;
+            return booksFromRepo;
         }
         public async Task<Book> GetBook(int id)
         {
