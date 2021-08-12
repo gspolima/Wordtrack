@@ -41,5 +41,12 @@ namespace Wordtrack.Data.Repository
             var writtenRows = await context.SaveChangesAsync();
             return writtenRows;
         }
+
+        public async Task<int> Delete(Book book)
+        {
+            context.Books.Remove(book);
+            var deletedRows = await context.SaveChangesAsync();
+            return deletedRows;
+        }
     }
 }

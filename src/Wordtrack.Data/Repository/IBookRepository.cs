@@ -10,5 +10,6 @@ namespace Wordtrack.Data.Repository
         Task<Book> GetBook(int id);
         Task<int> Save(Book book);
         Task<int> Update(Book book);
+        Task<int> Delete(Book book);
     }
 }
