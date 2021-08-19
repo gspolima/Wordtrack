@@ -50,6 +50,11 @@ namespace Wordtrack.Data
                 .IsRequired();
 
             modelBuilder.Entity<Book>()
+                .Property(b => b.isRead)
+                .IsRequired()
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<Book>()
                 .HasData(
                     new Book()
                     {
@@ -57,7 +62,8 @@ namespace Wordtrack.Data
                         Title = "Apology, The Death of Socrates",
                         Author = "Plato",
                         YearPublished = -399,
-                        Pages = 40
+                        Pages = 40,
+                        isRead = true
                     });
         }
     }
