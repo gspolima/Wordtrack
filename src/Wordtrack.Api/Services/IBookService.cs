@@ -6,7 +6,7 @@ namespace Wordtrack.Api.Services
 {
     public interface IBookService
     {
-        Task<List<Book>> GetAllBooks();
+        Task<List<Book>> GetBooks(int? count = 0);
         Task<Book> GetBook(int id);
         Task<int> AddBook(Book book);
         Task<int> EditBook(Book book);

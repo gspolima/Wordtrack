@@ -23,9 +23,9 @@ namespace Wordtrack.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<BookDto>>> GetAllBooks()
+        public async Task<ActionResult<List<BookDto>>> GetBooks([FromQuery] int count)
         {
-            var books = await service.GetAllBooks();
+            var books = await service.GetBooks(count);
             var results = mapper.Map<List<BookDto>>(books);
 
             return Ok(results);

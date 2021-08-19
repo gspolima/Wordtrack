@@ -14,8 +14,11 @@ namespace Wordtrack.Api.Services
             this.repo = bookRepo;
         }
 
-        public async Task<List<Book>> GetAllBooks()
+        public async Task<List<Book>> GetBooks(int? count = 0)
         {
+            if (count.HasValue)
+                return await repo.GetBooks(count.Value);
+
             var booksFromRepo = await repo.GetBooks();
             return booksFromRepo;
         }
