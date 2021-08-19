@@ -19,7 +19,7 @@ namespace Wordtrack.Data
 
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder
-                    .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WordtrackTestData;Trusted_Connection=true")
+                    .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WordtrackData;Trusted_Connection=true")
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
