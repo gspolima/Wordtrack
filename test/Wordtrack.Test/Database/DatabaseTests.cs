@@ -11,7 +11,7 @@ namespace Wordtrack.Test.Database
         public void CanSaveNewBookIntoDatabase()
         {
             var context =
-                new WordtrackContext(new DbContextOptions<WordtrackContext>());
+                new WordtrackTestContext();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
@@ -32,7 +32,7 @@ namespace Wordtrack.Test.Database
         [Fact]
         public void CanEditExisitingBookFromDatabase()
         {
-            var context = new WordtrackContext(new DbContextOptions<WordtrackContext>());
+            var context = new WordtrackTestContext();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.Books.Add(new Book()
