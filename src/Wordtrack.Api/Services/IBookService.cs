@@ -8,6 +8,7 @@ namespace Wordtrack.Api.Services
     {
         Task<List<Book>> GetBooks(int? count = 0);
         Task<Book> GetBook(int id);
+        Task<List<Book>> SearchBooksByAuthor(string author);
         Task<int> AddBook(Book book);
         Task<int> EditBook(Book book);
 

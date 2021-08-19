@@ -32,6 +32,15 @@ namespace Wordtrack.Api.Services
             return book;
         }
 
+        public async Task<List<Book>> SearchBooksByAuthor(string author)
+        {
+            if (string.IsNullOrWhiteSpace(author) || author.Length < 4)
+                return null;
+
+            var books = await repo.GetBooksByAuthor(author);
+            return books;
+        }
+
         public async Task<int> AddBook(Book book)
         {
             await repo.Save(book);

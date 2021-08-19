@@ -38,6 +38,19 @@ namespace Wordtrack.Api.Controllers
                     ? Ok(mapper.Map<BookDto>(book))
                     : NotFound();
 
+        [HttpGet("search")]
+        public async Task<ActionResult<List<BookDto>>> SearchBooksByAuthor([FromQuery] string author)
+        {
+            var books = await service.SearchBooksByAuthor(author);
+
+            if (books == null)
+                return BadRequest("Minimum of four characters to search by author");
+
+            var booksDto = mapper.Map<List<BookDto>>(books);
+
+            return Ok(booksDto);
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreateBook([FromBody] BookForCreationDto bookDto)
         {
