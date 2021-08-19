@@ -37,6 +37,17 @@ namespace Wordtrack.Data.Repository
             return book;
         }
 
+        public async Task<List<Book>> GetBooksByAuthor(string author)
+        {
+            var books = await context.Books
+                .Where(b => b.Author.ToLower() == author.ToLower())
+                .OrderBy(b => b.YearPublished)
+                .ThenBy(b => b.Title)
+                .ToListAsync();
+
+            return books;
+        }
+
         public async Task<int> Save(Book book)
         {
             context.Add(book);
