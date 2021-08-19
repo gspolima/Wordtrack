@@ -91,6 +91,23 @@ namespace Wordtrack.Api.Controllers
             return await service.RemoveBook(id) ? NoContent() : StatusCode(500);
         }
 
+        [HttpPut("{id}/{status}")]
+        public async Task<ActionResult> ChangeReadingStatus(int id, bool status)
+        {
+            var book = await service.GetBook(id);
+
+            if (book == null)
+                return NotFound();
+
+            if (book.isRead == status)
+                return Conflict($"Read status for book ID {id} is already set to {status}");
+
+            book.isRead = status;
+            await service.EditBook(book);
+
+            return NoContent();
+        }
+
         private bool AreTitleAndAuthorEqual(BookForCreationDto dto)
         {
             return dto.Title == dto.Author;
