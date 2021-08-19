@@ -86,18 +86,18 @@ namespace Wordtrack.Api.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}/{status}")]
-        public async Task<ActionResult> ChangeReadingStatus(int id, bool status)
+        [HttpPut("{id}/status")]
+        public async Task<ActionResult> ChangeReadingStatus(int id, [FromQuery] bool isRead)
         {
             var book = await service.GetBook(id);
 
             if (book == null)
                 return NotFound();
 
-            if (book.isRead == status)
-                return Conflict($"Read status for book ID {id} is already set to {status}");
+            if (book.isRead == isRead)
+                return Conflict($"isRead for book ID {id} is already set to {isRead}");
 
-            book.isRead = status;
+            book.isRead = isRead;
             await service.EditBook(book);
 
             return NoContent();
