@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -85,12 +86,6 @@ namespace Wordtrack.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteBook(int id)
-        {
-            return await service.RemoveBook(id) ? NoContent() : StatusCode(500);
-        }
-
         [HttpPut("{id}/{status}")]
         public async Task<ActionResult> ChangeReadingStatus(int id, bool status)
         {
@@ -106,6 +101,44 @@ namespace Wordtrack.Api.Controllers
             await service.EditBook(book);
 
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> PatchBook(int id,
+            [FromBody] JsonPatchDocument<BookForUpdateDto> patchDocument)
+        {
+            if (patchDocument == null)
+                return BadRequest();
+
+            var book = await service.GetBook(id);
+
+            if (!(book is Book))
+                return NotFound();
+
+            var bookToApplyTo = mapper.Map<BookForUpdateDto>(book);
+
+            patchDocument.ApplyTo(bookToApplyTo, ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (bookToApplyTo.Title == bookToApplyTo.Author)
+                ModelState.AddModelError(
+                    "Title", "Title and Author cannot be the same");
+
+            if (!TryValidateModel(bookToApplyTo))
+                return BadRequest(ModelState);
+
+            mapper.Map(bookToApplyTo, book);
+            await service.EditBook(book);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBook(int id)
+        {
+            return await service.RemoveBook(id) ? NoContent() : StatusCode(500);
         }
 
         private bool AreTitleAndAuthorEqual(BookForCreationDto dto)

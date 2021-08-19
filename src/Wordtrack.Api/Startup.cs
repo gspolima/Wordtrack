@@ -27,6 +27,8 @@ namespace Wordtrack.Api
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
 
+            services.AddControllersWithViews().AddNewtonsoftJson();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var connection = Configuration.GetConnectionString("DbConnection");
