@@ -9,6 +9,8 @@ namespace Wordtrack.Data.Repository
         Task<List<Book>> GetBooks(int count = 0);
         Task<Book> GetBook(int id);
         Task<List<Book>> GetBooksByAuthor(string author);
+        Task<List<Book>> GetBooksByTitle(string title);
+        Task<List<Book>> GetBooksByPublishingYear(int year);
         Task<int> Save(Book book);
         Task<int> Update(Book book);
         Task<int> Delete(Book book);
