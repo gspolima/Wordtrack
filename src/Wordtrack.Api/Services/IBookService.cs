@@ -9,9 +9,10 @@ namespace Wordtrack.Api.Services
         Task<List<Book>> GetBooks(int? count = 0);
         Task<Book> GetBook(int id);
         Task<List<Book>> SearchBooksByAuthor(string author);
+        Task<List<Book>> SearchBooksByTitle(string title);
+        Task<List<Book>> SearchBooksByPublisingYear(int year);
         Task<int> AddBook(Book book);
         Task<int> EditBook(Book book);
-
         Task<bool> RemoveBook(int id);
     }
 }

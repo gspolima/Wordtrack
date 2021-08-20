@@ -38,13 +38,39 @@ namespace Wordtrack.Api.Controllers
                     ? Ok(mapper.Map<BookDto>(book))
                     : NotFound();
 
-        [HttpGet("search")]
-        public async Task<ActionResult<List<BookDto>>> SearchBooksByAuthor([FromQuery] string author)
+        [HttpGet("search/author")]
+        public async Task<ActionResult<List<BookDto>>> SearchBooksByAuthor([FromQuery] string name)
         {
-            var books = await service.SearchBooksByAuthor(author);
+            var books = await service.SearchBooksByAuthor(name);
 
             if (books == null)
                 return BadRequest("Minimum of four characters to search by author");
+
+            var booksDto = mapper.Map<List<BookDto>>(books);
+
+            return Ok(booksDto);
+        }
+
+        [HttpGet("search/title")]
+        public async Task<ActionResult<List<BookDto>>> SearchBooksByTitle([FromQuery] string phrase)
+        {
+            var books = await service.SearchBooksByTitle(phrase);
+
+            if (books == null)
+                return BadRequest("Minimum of two characters to search by title");
+
+            var booksDto = mapper.Map<List<BookDto>>(books);
+
+            return Ok(booksDto);
+        }
+
+        [HttpGet("search/published")]
+        public async Task<ActionResult<List<BookDto>>> SearchBooksByYear([FromQuery] int year)
+        {
+            var books = await service.SearchBooksByPublisingYear(year);
+
+            if (books == null)
+                return BadRequest("Provided year cannot be zero or in the future");
 
             var booksDto = mapper.Map<List<BookDto>>(books);
 

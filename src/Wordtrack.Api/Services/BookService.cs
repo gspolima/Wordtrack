@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wordtrack.Data.Repository;
 using Wordtrack.Domain;
@@ -38,6 +39,25 @@ namespace Wordtrack.Api.Services
                 return null;
 
             var books = await repo.GetBooksByAuthor(author);
+            return books;
+        }
+        public async Task<List<Book>> SearchBooksByTitle(string title)
+        {
+            if (string.IsNullOrWhiteSpace(title) || title.Length < 2)
+                return null;
+
+            var books = await repo.GetBooksByTitle(title);
+
+            return books;
+        }
+
+        public async Task<List<Book>> SearchBooksByPublisingYear(int year)
+        {
+            if (year > DateTime.Now.Year || year == 0)
+                return null;
+
+            var books = await repo.GetBooksByPublishingYear(year);
+
             return books;
         }
 
