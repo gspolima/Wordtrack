@@ -14,18 +14,18 @@ namespace Wordtrack.Data.Repository
             this.context = context;
         }
 
-        public Task<List<Book>> GetBooks(int count = 0)
+        public async Task<List<Book>> GetBooks(int count = 0)
         {
 
             if (count > 0)
             {
-                return context.Books
+                return await context.Books
                     .Take(count)
                     .OrderBy(b => b.Id)
                     .ToListAsync();
             }
 
-            var books = context.Books.ToListAsync();
+            var books = await context.Books.ToListAsync();
             return books;
         }
 
