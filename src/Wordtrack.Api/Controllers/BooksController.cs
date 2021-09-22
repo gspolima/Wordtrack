@@ -177,7 +177,7 @@ namespace Wordtrack.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBook(int id)
         {
-            return await service.RemoveBook(id) ? NoContent() : StatusCode(500);
+            return await service.RemoveBook(id) ? NoContent() : NotFound();
         }
 
         private bool AreTitleAndAuthorEqual(BookForCreationDto dto)
