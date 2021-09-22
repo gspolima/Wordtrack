@@ -39,6 +39,8 @@ namespace Wordtrack.Api
 
             services.AddControllers();
 
+            services.AddMvcCore().AddApiExplorer();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Wordtrack.Api", Version = "v1" });
